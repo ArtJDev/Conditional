@@ -26,12 +26,15 @@ class ConditionalApplicationTests {
     }
 
     @Test
-    void contextLoads() {
+    void contextLoadsDev() {
         ResponseEntity<String> devappEntity = restTemplate.getForEntity("http://localhost:" + myAppDev.getMappedPort(8080) + "/profile", String.class);
-        ResponseEntity<String> prodappEntity = restTemplate.getForEntity("http://localhost:" + myAppProd.getMappedPort(8081) + "/profile", String.class);
         Assert.assertEquals("Current profile is dev", devappEntity.getBody());
-        Assert.assertEquals("Current profile is production", prodappEntity.getBody());
         System.out.println(devappEntity.getBody());
+    }
+    @Test
+    void contextLoadsProd() {
+        ResponseEntity<String> prodappEntity = restTemplate.getForEntity("http://localhost:" + myAppProd.getMappedPort(8081) + "/profile", String.class);
+        Assert.assertEquals("Current profile is production", prodappEntity.getBody());
         System.out.println(prodappEntity.getBody());
     }
 }
