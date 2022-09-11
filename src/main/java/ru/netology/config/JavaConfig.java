@@ -1,6 +1,5 @@
 package ru.netology.config;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +16,7 @@ public class JavaConfig {
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "netology", name = "profile.dev", havingValue = "false", matchIfMissing = true)
+    @ConditionalOnProperty(prefix = "netology", name = "profile.dev", havingValue = "false")
     public SystemProfile prodProfile() {
         return new ProductionProfile();
     }
